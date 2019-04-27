@@ -1,0 +1,13 @@
+﻿{
+  "currentToken": "JxogRBrPuYNRAYXIyWA+3A==",
+  "apiurlSource": "http://api.kloudhotels.com:8081",
+  "hotelCode": "QDB",
+  "timeTrigger": "02:00:00 AM",
+  "returnPath": "D:\\Innosoft\\quinta\\return",
+  "apiurlHost": "http://quinta.easyfis.com",
+  "defaultVATOutput": "",
+  "defaultVATInput": "",
+  "defaultVTAX": "",
+  "defaultDiscount": "",
+  "defaultTerm": ""
+}
