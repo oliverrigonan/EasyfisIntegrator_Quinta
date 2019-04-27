@@ -114,6 +114,8 @@ namespace EasyfisIntegration_Quinta
 
             logMessages("Integration has been stopped! \r\n\n");
             logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n \r\n\n");
+
+            isIntegrating = false;
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -197,8 +199,6 @@ namespace EasyfisIntegration_Quinta
             {
                 if (txt_time.Text.Equals(txt_timeTrigger.Text))
                 {
-                    isIntegrating = false;
-
                     logMessages("Integrating..." + "\r\n\n");
                     logMessages("Downloading data source..." + "\r\n\n \r\n\n");
 
@@ -521,47 +521,51 @@ namespace EasyfisIntegration_Quinta
             }
             catch (Exception e)
             {
-                logMessages(e.Message + "\r\n\n");
+                logMessages("Reading Error: " + e.Message + "\r\n\n");
                 logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n \r\n\n");
-
-                isIntegrating = true;
             }
         }
 
         public void SendData(String json)
         {
-            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(txt_APIURLHostEasyfis.Text + "/api/quinta/integration/salesInvoice/add");
-            httpWebRequest.ContentType = "application/json";
-            httpWebRequest.Method = "POST";
-
-            using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            try
             {
-                JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-                Entities.Quinta.RootObject rootObject = javaScriptSerializer.Deserialize<Entities.Quinta.RootObject>(json);
+                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(txt_APIURLHostEasyfis.Text + "/api/quinta/integration/salesInvoice/add");
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "POST";
 
-                streamWriter.Write(new JavaScriptSerializer().Serialize(rootObject));
-            }
-
-            HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            using (StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                var result = streamReader.ReadToEnd();
-                if (result != null)
+                using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
-                    DateTime dateTimeNow = DateTime.Now;
-                    String todayDate = dateTimeNow.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+                    Entities.Quinta.RootObject rootObject = javaScriptSerializer.Deserialize<Entities.Quinta.RootObject>(json);
 
-                    String jsonReturnPath = txt_returnPath.Text;
-                    String fileName = "Return (" + todayDate + ")";
-                    String jsonFileName = jsonReturnPath + "\\" + fileName + ".json";
-
-                    File.WriteAllText(jsonFileName, result);
-
-                    logMessages("Sent Succesful! \r\n\n");
-                    logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n \r\n\n");
+                    streamWriter.Write(new JavaScriptSerializer().Serialize(rootObject));
                 }
 
-                isIntegrating = true;
+                HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
+                    if (result != null)
+                    {
+                        DateTime dateTimeNow = DateTime.Now;
+                        String todayDate = dateTimeNow.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+                        String jsonReturnPath = txt_returnPath.Text;
+                        String fileName = "Return (" + todayDate + ")";
+                        String jsonFileName = jsonReturnPath + "\\" + fileName + ".json";
+
+                        File.WriteAllText(jsonFileName, result);
+
+                        logMessages("Sent Succesful! \r\n\n");
+                        logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n \r\n\n");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                logMessages("Sending Error: " + e.Message + "\r\n\n");
+                logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n \r\n\n");
             }
         }
     }
