@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -192,9 +193,18 @@ namespace EasyfisIntegration_Quinta
             }
         }
 
+        public DateTime currentDate = DateTime.Today;
+        public DateTime tomorrowDate = DateTime.Today.AddDays(1);
+
         private void tmr_timeTriggerTick(object sender, EventArgs e)
         {
             txt_time.Text = DateTime.Now.ToString("hh:mm:ss tt", CultureInfo.InvariantCulture);
+
+            if (DateTime.Today == tomorrowDate)
+            {
+                tomorrowDate = DateTime.Today.AddDays(1);
+                dtp_currentDate.Text = DateTime.Today.ToShortDateString();
+            }
 
             if (isIntegrating)
             {

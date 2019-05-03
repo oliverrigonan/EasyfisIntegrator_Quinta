@@ -35,8 +35,6 @@
             this.lbl_title = new System.Windows.Forms.Label();
             this.tab_container = new System.Windows.Forms.TabControl();
             this.tab_activity = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txt_currentToken = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_time = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,10 +43,11 @@
             this.btn_start = new System.Windows.Forms.Button();
             this.txt_activity = new System.Windows.Forms.TextBox();
             this.tab_settings = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
             this.btn_openExplorer = new System.Windows.Forms.Button();
+            this.txt_currentToken = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.txt_timeTrigger = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txt_APIURLHostEasyfis = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -62,10 +61,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.cmb_defaultVATOuput = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txt_returnPath = new System.Windows.Forms.TextBox();
+            this.txt_timeTrigger = new System.Windows.Forms.TextBox();
             this.btn_edit = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.txt_returnPath = new System.Windows.Forms.TextBox();
             this.txt_hotelCode = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txt_APIURLSource = new System.Windows.Forms.TextBox();
@@ -144,24 +144,6 @@
             this.tab_activity.Text = "Activity";
             this.tab_activity.UseVisualStyleBackColor = true;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(4, 65);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 19);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Current Token:";
-            // 
-            // txt_currentToken
-            // 
-            this.txt_currentToken.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_currentToken.Location = new System.Drawing.Point(8, 85);
-            this.txt_currentToken.Name = "txt_currentToken";
-            this.txt_currentToken.Size = new System.Drawing.Size(474, 28);
-            this.txt_currentToken.TabIndex = 7;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -193,6 +175,7 @@
             // 
             // dtp_currentDate
             // 
+            this.dtp_currentDate.Checked = false;
             this.dtp_currentDate.CustomFormat = "";
             this.dtp_currentDate.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_currentDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -267,6 +250,16 @@
             this.tab_settings.Text = "Settings";
             this.tab_settings.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(4, 65);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(107, 19);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Current Token:";
+            // 
             // btn_openExplorer
             // 
             this.btn_openExplorer.BackColor = System.Drawing.Color.LightGray;
@@ -281,6 +274,14 @@
             this.btn_openExplorer.Text = "Open";
             this.btn_openExplorer.UseVisualStyleBackColor = false;
             this.btn_openExplorer.Click += new System.EventHandler(this.btn_openExplorer_Click);
+            // 
+            // txt_currentToken
+            // 
+            this.txt_currentToken.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_currentToken.Location = new System.Drawing.Point(8, 85);
+            this.txt_currentToken.Name = "txt_currentToken";
+            this.txt_currentToken.Size = new System.Drawing.Size(474, 28);
+            this.txt_currentToken.TabIndex = 7;
             // 
             // label14
             // 
@@ -302,14 +303,6 @@
             this.label15.Size = new System.Drawing.Size(90, 19);
             this.label15.TabIndex = 21;
             this.label15.Text = "Return Path";
-            // 
-            // txt_timeTrigger
-            // 
-            this.txt_timeTrigger.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_timeTrigger.Location = new System.Drawing.Point(488, 85);
-            this.txt_timeTrigger.Name = "txt_timeTrigger";
-            this.txt_timeTrigger.Size = new System.Drawing.Size(229, 28);
-            this.txt_timeTrigger.TabIndex = 18;
             // 
             // groupBox1
             // 
@@ -459,13 +452,13 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "VAT Ouput";
             // 
-            // txt_returnPath
+            // txt_timeTrigger
             // 
-            this.txt_returnPath.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_returnPath.Location = new System.Drawing.Point(8, 138);
-            this.txt_returnPath.Name = "txt_returnPath";
-            this.txt_returnPath.Size = new System.Drawing.Size(619, 28);
-            this.txt_returnPath.TabIndex = 20;
+            this.txt_timeTrigger.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_timeTrigger.Location = new System.Drawing.Point(488, 85);
+            this.txt_timeTrigger.Name = "txt_timeTrigger";
+            this.txt_timeTrigger.Size = new System.Drawing.Size(229, 28);
+            this.txt_timeTrigger.TabIndex = 18;
             // 
             // btn_edit
             // 
@@ -504,6 +497,14 @@
             this.label7.Size = new System.Drawing.Size(92, 19);
             this.label7.TabIndex = 12;
             this.label7.Text = "Hotel Code:";
+            // 
+            // txt_returnPath
+            // 
+            this.txt_returnPath.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_returnPath.Location = new System.Drawing.Point(8, 138);
+            this.txt_returnPath.Name = "txt_returnPath";
+            this.txt_returnPath.Size = new System.Drawing.Size(619, 28);
+            this.txt_returnPath.TabIndex = 20;
             // 
             // txt_hotelCode
             // 
