@@ -44,28 +44,14 @@
             this.txt_activity = new System.Windows.Forms.TextBox();
             this.tab_settings = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
-            this.btn_openExplorer = new System.Windows.Forms.Button();
             this.txt_currentToken = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txt_APIURLHostEasyfis = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.cmb_defaultTerm = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.cmb_defaultDiscount = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cmb_defaultWTAX = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.cmb_defaultVATInput = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cmb_defaultVATOuput = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.txt_timeTrigger = new System.Windows.Forms.TextBox();
             this.btn_edit = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.txt_returnPath = new System.Windows.Forms.TextBox();
             this.txt_hotelCode = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txt_APIURLSource = new System.Windows.Forms.TextBox();
@@ -74,13 +60,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tmr_timeTrigger = new System.Windows.Forms.Timer(this.components);
             this.fbd_returnDataPath = new System.Windows.Forms.FolderBrowserDialog();
+            this.cbx_IsTimeTrigger = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.pnl_title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tab_container.SuspendLayout();
             this.tab_activity.SuspendLayout();
             this.tab_settings.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.pnl_footer.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_title
@@ -228,20 +216,9 @@
             // 
             // tab_settings
             // 
-            this.tab_settings.Controls.Add(this.label3);
-            this.tab_settings.Controls.Add(this.btn_openExplorer);
-            this.tab_settings.Controls.Add(this.txt_currentToken);
-            this.tab_settings.Controls.Add(this.label14);
-            this.tab_settings.Controls.Add(this.label15);
-            this.tab_settings.Controls.Add(this.groupBox1);
-            this.tab_settings.Controls.Add(this.txt_timeTrigger);
+            this.tab_settings.Controls.Add(this.panel1);
             this.tab_settings.Controls.Add(this.btn_edit);
             this.tab_settings.Controls.Add(this.btn_save);
-            this.tab_settings.Controls.Add(this.label7);
-            this.tab_settings.Controls.Add(this.txt_returnPath);
-            this.tab_settings.Controls.Add(this.txt_hotelCode);
-            this.tab_settings.Controls.Add(this.label6);
-            this.tab_settings.Controls.Add(this.txt_APIURLSource);
             this.tab_settings.Location = new System.Drawing.Point(4, 25);
             this.tab_settings.Name = "tab_settings";
             this.tab_settings.Padding = new System.Windows.Forms.Padding(3);
@@ -254,31 +231,16 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(4, 65);
+            this.label3.Location = new System.Drawing.Point(9, 68);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 19);
             this.label3.TabIndex = 8;
             this.label3.Text = "Current Token:";
             // 
-            // btn_openExplorer
-            // 
-            this.btn_openExplorer.BackColor = System.Drawing.Color.LightGray;
-            this.btn_openExplorer.FlatAppearance.BorderSize = 0;
-            this.btn_openExplorer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_openExplorer.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_openExplorer.ForeColor = System.Drawing.Color.Black;
-            this.btn_openExplorer.Location = new System.Drawing.Point(633, 137);
-            this.btn_openExplorer.Name = "btn_openExplorer";
-            this.btn_openExplorer.Size = new System.Drawing.Size(84, 31);
-            this.btn_openExplorer.TabIndex = 20;
-            this.btn_openExplorer.Text = "Open";
-            this.btn_openExplorer.UseVisualStyleBackColor = false;
-            this.btn_openExplorer.Click += new System.EventHandler(this.btn_openExplorer_Click);
-            // 
             // txt_currentToken
             // 
             this.txt_currentToken.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_currentToken.Location = new System.Drawing.Point(8, 85);
+            this.txt_currentToken.Location = new System.Drawing.Point(13, 88);
             this.txt_currentToken.Name = "txt_currentToken";
             this.txt_currentToken.Size = new System.Drawing.Size(474, 28);
             this.txt_currentToken.TabIndex = 7;
@@ -287,53 +249,19 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(484, 65);
+            this.label14.Location = new System.Drawing.Point(9, 217);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(90, 19);
             this.label14.TabIndex = 19;
             this.label14.Text = "Time Trigger:";
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(5, 118);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(90, 19);
-            this.label15.TabIndex = 21;
-            this.label15.Text = "Return Path";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.txt_APIURLHostEasyfis);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.cmb_defaultTerm);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.cmb_defaultDiscount);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.cmb_defaultWTAX);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.cmb_defaultVATInput);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.cmb_defaultVATOuput);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox1.Location = new System.Drawing.Point(9, 174);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(708, 278);
-            this.groupBox1.TabIndex = 17;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Easyfis Settings";
-            // 
             // txt_APIURLHostEasyfis
             // 
             this.txt_APIURLHostEasyfis.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_APIURLHostEasyfis.ForeColor = System.Drawing.Color.Black;
-            this.txt_APIURLHostEasyfis.Location = new System.Drawing.Point(17, 54);
+            this.txt_APIURLHostEasyfis.Location = new System.Drawing.Point(13, 151);
             this.txt_APIURLHostEasyfis.Name = "txt_APIURLHostEasyfis";
-            this.txt_APIURLHostEasyfis.Size = new System.Drawing.Size(542, 28);
+            this.txt_APIURLHostEasyfis.Size = new System.Drawing.Size(682, 28);
             this.txt_APIURLHostEasyfis.TabIndex = 18;
             // 
             // label13
@@ -341,121 +269,16 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(17, 32);
+            this.label13.Location = new System.Drawing.Point(9, 129);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(90, 19);
             this.label13.TabIndex = 26;
             this.label13.Text = "API URL Host";
             // 
-            // cmb_defaultTerm
-            // 
-            this.cmb_defaultTerm.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb_defaultTerm.ForeColor = System.Drawing.Color.Black;
-            this.cmb_defaultTerm.FormattingEnabled = true;
-            this.cmb_defaultTerm.Location = new System.Drawing.Point(307, 168);
-            this.cmb_defaultTerm.Name = "cmb_defaultTerm";
-            this.cmb_defaultTerm.Size = new System.Drawing.Size(252, 29);
-            this.cmb_defaultTerm.TabIndex = 23;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(307, 146);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(40, 19);
-            this.label12.TabIndex = 24;
-            this.label12.Text = "Term";
-            // 
-            // cmb_defaultDiscount
-            // 
-            this.cmb_defaultDiscount.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb_defaultDiscount.ForeColor = System.Drawing.Color.Black;
-            this.cmb_defaultDiscount.FormattingEnabled = true;
-            this.cmb_defaultDiscount.Location = new System.Drawing.Point(307, 111);
-            this.cmb_defaultDiscount.Name = "cmb_defaultDiscount";
-            this.cmb_defaultDiscount.Size = new System.Drawing.Size(252, 29);
-            this.cmb_defaultDiscount.TabIndex = 21;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(307, 89);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(68, 19);
-            this.label11.TabIndex = 22;
-            this.label11.Text = "Discount";
-            // 
-            // cmb_defaultWTAX
-            // 
-            this.cmb_defaultWTAX.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb_defaultWTAX.ForeColor = System.Drawing.Color.Black;
-            this.cmb_defaultWTAX.FormattingEnabled = true;
-            this.cmb_defaultWTAX.Location = new System.Drawing.Point(17, 226);
-            this.cmb_defaultWTAX.Name = "cmb_defaultWTAX";
-            this.cmb_defaultWTAX.Size = new System.Drawing.Size(252, 29);
-            this.cmb_defaultWTAX.TabIndex = 19;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(17, 204);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(47, 19);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "WTAX";
-            // 
-            // cmb_defaultVATInput
-            // 
-            this.cmb_defaultVATInput.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb_defaultVATInput.ForeColor = System.Drawing.Color.Black;
-            this.cmb_defaultVATInput.FormattingEnabled = true;
-            this.cmb_defaultVATInput.Location = new System.Drawing.Point(17, 168);
-            this.cmb_defaultVATInput.Name = "cmb_defaultVATInput";
-            this.cmb_defaultVATInput.Size = new System.Drawing.Size(252, 29);
-            this.cmb_defaultVATInput.TabIndex = 17;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(17, 146);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(72, 19);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "VAT Input";
-            // 
-            // cmb_defaultVATOuput
-            // 
-            this.cmb_defaultVATOuput.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb_defaultVATOuput.ForeColor = System.Drawing.Color.Black;
-            this.cmb_defaultVATOuput.FormattingEnabled = true;
-            this.cmb_defaultVATOuput.Location = new System.Drawing.Point(17, 111);
-            this.cmb_defaultVATOuput.Name = "cmb_defaultVATOuput";
-            this.cmb_defaultVATOuput.Size = new System.Drawing.Size(252, 29);
-            this.cmb_defaultVATOuput.TabIndex = 15;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(17, 89);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(81, 19);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "VAT Ouput";
-            // 
             // txt_timeTrigger
             // 
             this.txt_timeTrigger.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_timeTrigger.Location = new System.Drawing.Point(488, 85);
+            this.txt_timeTrigger.Location = new System.Drawing.Point(13, 237);
             this.txt_timeTrigger.Name = "txt_timeTrigger";
             this.txt_timeTrigger.Size = new System.Drawing.Size(229, 28);
             this.txt_timeTrigger.TabIndex = 18;
@@ -492,33 +315,25 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(484, 12);
+            this.label7.Location = new System.Drawing.Point(493, 68);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(92, 19);
             this.label7.TabIndex = 12;
             this.label7.Text = "Hotel Code:";
             // 
-            // txt_returnPath
-            // 
-            this.txt_returnPath.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_returnPath.Location = new System.Drawing.Point(8, 138);
-            this.txt_returnPath.Name = "txt_returnPath";
-            this.txt_returnPath.Size = new System.Drawing.Size(619, 28);
-            this.txt_returnPath.TabIndex = 20;
-            // 
             // txt_hotelCode
             // 
             this.txt_hotelCode.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_hotelCode.Location = new System.Drawing.Point(488, 32);
+            this.txt_hotelCode.Location = new System.Drawing.Point(497, 88);
             this.txt_hotelCode.Name = "txt_hotelCode";
-            this.txt_hotelCode.Size = new System.Drawing.Size(229, 28);
+            this.txt_hotelCode.Size = new System.Drawing.Size(198, 28);
             this.txt_hotelCode.TabIndex = 11;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(4, 12);
+            this.label6.Location = new System.Drawing.Point(9, 7);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(112, 19);
             this.label6.TabIndex = 10;
@@ -527,9 +342,9 @@
             // txt_APIURLSource
             // 
             this.txt_APIURLSource.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_APIURLSource.Location = new System.Drawing.Point(8, 32);
+            this.txt_APIURLSource.Location = new System.Drawing.Point(13, 27);
             this.txt_APIURLSource.Name = "txt_APIURLSource";
-            this.txt_APIURLSource.Size = new System.Drawing.Size(474, 28);
+            this.txt_APIURLSource.Size = new System.Drawing.Size(682, 28);
             this.txt_APIURLSource.TabIndex = 9;
             // 
             // pnl_footer
@@ -571,6 +386,35 @@
             this.tmr_timeTrigger.Interval = 1000;
             this.tmr_timeTrigger.Tick += new System.EventHandler(this.tmr_timeTriggerTick);
             // 
+            // cbx_IsTimeTrigger
+            // 
+            this.cbx_IsTimeTrigger.AutoSize = true;
+            this.cbx_IsTimeTrigger.Location = new System.Drawing.Point(262, 243);
+            this.cbx_IsTimeTrigger.Name = "cbx_IsTimeTrigger";
+            this.cbx_IsTimeTrigger.Size = new System.Drawing.Size(133, 21);
+            this.cbx_IsTimeTrigger.TabIndex = 27;
+            this.cbx_IsTimeTrigger.Text = "Is Time Trigger?";
+            this.cbx_IsTimeTrigger.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.cbx_IsTimeTrigger);
+            this.panel1.Controls.Add(this.txt_APIURLHostEasyfis);
+            this.panel1.Controls.Add(this.txt_timeTrigger);
+            this.panel1.Controls.Add(this.label13);
+            this.panel1.Controls.Add(this.label14);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.txt_APIURLSource);
+            this.panel1.Controls.Add(this.txt_currentToken);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.txt_hotelCode);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Location = new System.Drawing.Point(7, 6);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(710, 446);
+            this.panel1.TabIndex = 28;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -594,11 +438,10 @@
             this.tab_activity.ResumeLayout(false);
             this.tab_activity.PerformLayout();
             this.tab_settings.ResumeLayout(false);
-            this.tab_settings.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.pnl_footer.ResumeLayout(false);
             this.pnl_footer.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -629,25 +472,13 @@
         private System.Windows.Forms.TextBox txt_APIURLSource;
         private System.Windows.Forms.Button btn_edit;
         private System.Windows.Forms.Button btn_save;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox cmb_defaultVATOuput;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox cmb_defaultTerm;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox cmb_defaultDiscount;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox cmb_defaultWTAX;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox cmb_defaultVATInput;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txt_APIURLHostEasyfis;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txt_timeTrigger;
         private System.Windows.Forms.Timer tmr_timeTrigger;
         private System.Windows.Forms.FolderBrowserDialog fbd_returnDataPath;
-        private System.Windows.Forms.Button btn_openExplorer;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txt_returnPath;
+        private System.Windows.Forms.CheckBox cbx_IsTimeTrigger;
+        private System.Windows.Forms.Panel panel1;
     }
 }

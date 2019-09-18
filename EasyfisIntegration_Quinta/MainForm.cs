@@ -29,18 +29,10 @@ namespace EasyfisIntegration_Quinta
 
             txt_APIURLSource.Enabled = false;
             txt_hotelCode.Enabled = false;
-            txt_timeTrigger.Enabled = false;
-            txt_returnPath.Enabled = false;
-            txt_returnPath.ReadOnly = false;
-            btn_openExplorer.Enabled = false;
-
             txt_currentToken.Enabled = false;
             txt_APIURLHostEasyfis.Enabled = false;
-            cmb_defaultVATOuput.Enabled = false;
-            cmb_defaultVATInput.Enabled = false;
-            cmb_defaultWTAX.Enabled = false;
-            cmb_defaultDiscount.Enabled = false;
-            cmb_defaultTerm.Enabled = false;
+            cbx_IsTimeTrigger.Enabled = false;
+            txt_timeTrigger.Enabled = false;
 
             btn_save.Enabled = false;
             btn_edit.Enabled = true;
@@ -63,19 +55,9 @@ namespace EasyfisIntegration_Quinta
             txt_currentToken.Text = setting.CurrentToken;
             txt_APIURLSource.Text = setting.APIURLSource;
             txt_hotelCode.Text = setting.HotelCode;
-            txt_timeTrigger.Text = setting.TimeTrigger;
-            txt_returnPath.Text = setting.ReturnPath;
-
             txt_APIURLHostEasyfis.Text = setting.APIURLHost;
-            cmb_defaultVATOuput.SelectedItem = setting.DefaultVATOutput;
-            cmb_defaultVATInput.SelectedItem = setting.DefaultVATInput;
-            cmb_defaultWTAX.SelectedItem = setting.DefaultVTAX;
-            cmb_defaultDiscount.SelectedItem = setting.DefaultDiscount;
-            cmb_defaultTerm.SelectedItem = setting.DefaultTerm;
-
-            CreateComboBoxTaxType();
-            CreateComboBoxDiscount();
-            CreateComboBoxTerm();
+            cbx_IsTimeTrigger.Checked = setting.IsTimeTrigger;
+            txt_timeTrigger.Text = setting.TimeTrigger;
 
             logMessages("Press Start to Integrate... \r\n\n \r\n\n");
         }
@@ -102,9 +84,16 @@ namespace EasyfisIntegration_Quinta
                 dtp_currentDate.Enabled = false;
 
                 logMessages("Integration has been started! \r\n\n");
-                logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n \r\n\n");
+                logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n\r\n\n");
 
-                isIntegrating = true;
+                if (cbx_IsTimeTrigger.Checked)
+                {
+                    isIntegrating = true;
+                }
+                else
+                {
+                    Integrate();
+                }
             }
         }
 
@@ -114,7 +103,7 @@ namespace EasyfisIntegration_Quinta
             btn_stop.Enabled = false;
             dtp_currentDate.Enabled = true;
 
-            logMessages("Integration has been stopped! \r\n\n");
+            logMessages("\r\n\nIntegration has been stopped! \r\n\n");
             logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n \r\n\n");
 
             isIntegrating = false;
@@ -127,18 +116,10 @@ namespace EasyfisIntegration_Quinta
             {
                 txt_APIURLSource.Enabled = false;
                 txt_hotelCode.Enabled = false;
-                txt_timeTrigger.Enabled = false;
-                txt_returnPath.Enabled = false;
-                txt_returnPath.ReadOnly = false;
-                btn_openExplorer.Enabled = false;
-
                 txt_currentToken.Enabled = false;
                 txt_APIURLHostEasyfis.Enabled = false;
-                cmb_defaultVATOuput.Enabled = false;
-                cmb_defaultVATInput.Enabled = false;
-                cmb_defaultWTAX.Enabled = false;
-                cmb_defaultDiscount.Enabled = false;
-                cmb_defaultTerm.Enabled = false;
+                cbx_IsTimeTrigger.Enabled = false;
+                txt_timeTrigger.Enabled = false;
 
                 btn_save.Enabled = false;
                 btn_edit.Enabled = true;
@@ -148,14 +129,9 @@ namespace EasyfisIntegration_Quinta
                     CurrentToken = txt_currentToken.Text,
                     APIURLSource = txt_APIURLSource.Text,
                     HotelCode = txt_hotelCode.Text,
-                    TimeTrigger = txt_timeTrigger.Text,
-                    ReturnPath = txt_returnPath.Text,
                     APIURLHost = txt_APIURLHostEasyfis.Text,
-                    DefaultVATOutput = cmb_defaultVATOuput.Text,
-                    DefaultVATInput = cmb_defaultVATInput.Text,
-                    DefaultVTAX = cmb_defaultWTAX.Text,
-                    DefaultDiscount = cmb_defaultDiscount.Text,
-                    DefaultTerm = cmb_defaultTerm.Text
+                    IsTimeTrigger = cbx_IsTimeTrigger.Checked,
+                    TimeTrigger = txt_timeTrigger.Text
                 };
 
                 String settingsPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Settings.json");
@@ -171,18 +147,10 @@ namespace EasyfisIntegration_Quinta
             {
                 txt_APIURLSource.Enabled = true;
                 txt_hotelCode.Enabled = true;
-                txt_timeTrigger.Enabled = true;
-                txt_returnPath.Enabled = true;
-                txt_returnPath.ReadOnly = true;
-                btn_openExplorer.Enabled = true;
-
                 txt_currentToken.Enabled = true;
                 txt_APIURLHostEasyfis.Enabled = true;
-                cmb_defaultVATOuput.Enabled = true;
-                cmb_defaultVATInput.Enabled = true;
-                cmb_defaultWTAX.Enabled = true;
-                cmb_defaultDiscount.Enabled = true;
-                cmb_defaultTerm.Enabled = true;
+                cbx_IsTimeTrigger.Enabled = true;
+                txt_timeTrigger.Enabled = true;
 
                 btn_save.Enabled = true;
                 btn_edit.Enabled = false;
@@ -240,171 +208,6 @@ namespace EasyfisIntegration_Quinta
             }
         }
 
-        private void btn_openExplorer_Click(object sender, EventArgs e)
-        {
-            fbd_returnDataPath.ShowDialog();
-            txt_returnPath.Text = fbd_returnDataPath.SelectedPath;
-        }
-
-        public void CreateComboBoxTaxType()
-        {
-            try
-            {
-                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(txt_APIURLHostEasyfis.Text + "/api/quinta/integration/salesInvoice/dropdown/taxType/list");
-                httpWebRequest.ContentType = "application/json";
-                httpWebRequest.Method = "GET";
-
-                HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                using (StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                {
-                    var result = streamReader.ReadToEnd();
-
-                    JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-                    List<Entities.MstTaxType> mstTaxTypes = (List<Entities.MstTaxType>)javaScriptSerializer.Deserialize(result, typeof(List<Entities.MstTaxType>));
-
-                    var isFirstIndexSelected = false;
-
-                    foreach (var taxType in mstTaxTypes)
-                    {
-                        cmb_defaultVATOuput.Items.Add(taxType.TaxType);
-                        cmb_defaultVATInput.Items.Add(taxType.TaxType);
-                        cmb_defaultWTAX.Items.Add(taxType.TaxType);
-
-                        if (!isFirstIndexSelected)
-                        {
-                            cmb_defaultVATOuput.SelectedItem = taxType.TaxType;
-                            cmb_defaultVATInput.SelectedItem = taxType.TaxType;
-                            cmb_defaultWTAX.SelectedItem = taxType.TaxType;
-
-                            isFirstIndexSelected = true;
-                        }
-                    }
-
-                    String settingsPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"settings.json");
-
-                    String settingsJson;
-                    using (StreamReader settingsStreamReader = new StreamReader(settingsPath))
-                    {
-                        settingsJson = settingsStreamReader.ReadToEnd();
-                    }
-
-                    JavaScriptSerializer js = new JavaScriptSerializer();
-                    Entities.Settings s = js.Deserialize<Entities.Settings>(settingsJson);
-
-                    cmb_defaultVATOuput.SelectedItem = s.DefaultVATOutput;
-                    cmb_defaultVATInput.SelectedItem = s.DefaultVATInput;
-                    cmb_defaultWTAX.SelectedItem = s.DefaultVTAX;
-                }
-            }
-            catch (Exception e)
-            {
-                logMessages(e.Message + "\r\n\n");
-                logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n \r\n\n");
-            }
-        }
-
-        public void CreateComboBoxDiscount()
-        {
-            try
-            {
-                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(txt_APIURLHostEasyfis.Text + "/api/quinta/integration/salesInvoice/dropdown/discount/list");
-                httpWebRequest.ContentType = "application/json";
-                httpWebRequest.Method = "GET";
-
-                HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                using (StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                {
-                    var result = streamReader.ReadToEnd();
-
-                    JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-                    List<Entities.MstDiscount> mstDiscounts = (List<Entities.MstDiscount>)javaScriptSerializer.Deserialize(result, typeof(List<Entities.MstDiscount>));
-
-                    var isFirstIndexSelected = false;
-
-                    foreach (var discount in mstDiscounts)
-                    {
-                        cmb_defaultDiscount.Items.Add(discount.Discount);
-
-                        if (!isFirstIndexSelected)
-                        {
-                            cmb_defaultDiscount.SelectedItem = discount.Discount;
-
-                            isFirstIndexSelected = true;
-                        }
-                    }
-
-                    String settingsPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"settings.json");
-
-                    String settingsJson;
-                    using (StreamReader settingsStreamReader = new StreamReader(settingsPath))
-                    {
-                        settingsJson = settingsStreamReader.ReadToEnd();
-                    }
-
-                    JavaScriptSerializer js = new JavaScriptSerializer();
-                    Entities.Settings s = js.Deserialize<Entities.Settings>(settingsJson);
-
-                    cmb_defaultDiscount.SelectedItem = s.DefaultDiscount;
-                }
-            }
-            catch (Exception e)
-            {
-                logMessages(e.Message + "\r\n\n");
-                logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n \r\n\n");
-            }
-        }
-
-        public void CreateComboBoxTerm()
-        {
-            try
-            {
-                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(txt_APIURLHostEasyfis.Text + "/api/quinta/integration/salesInvoice/dropdown/term/list");
-                httpWebRequest.ContentType = "application/json";
-                httpWebRequest.Method = "GET";
-
-                HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                using (StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                {
-                    var result = streamReader.ReadToEnd();
-
-                    JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-                    List<Entities.MstTerm> mstTerms = (List<Entities.MstTerm>)javaScriptSerializer.Deserialize(result, typeof(List<Entities.MstTerm>));
-
-                    var isFirstIndexSelected = false;
-
-                    foreach (var term in mstTerms)
-                    {
-                        cmb_defaultTerm.Items.Add(term.Term);
-
-                        if (!isFirstIndexSelected)
-                        {
-                            cmb_defaultTerm.SelectedItem = term.Term;
-
-                            isFirstIndexSelected = true;
-                        }
-                    }
-
-                    String settingsPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"settings.json");
-
-                    String settingsJson;
-                    using (StreamReader settingsStreamReader = new StreamReader(settingsPath))
-                    {
-                        settingsJson = settingsStreamReader.ReadToEnd();
-                    }
-
-                    JavaScriptSerializer js = new JavaScriptSerializer();
-                    Entities.Settings s = js.Deserialize<Entities.Settings>(settingsJson);
-
-                    cmb_defaultTerm.SelectedItem = s.DefaultTerm;
-                }
-            }
-            catch (Exception e)
-            {
-                logMessages(e.Message + "\r\n\n");
-                logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n \r\n\n");
-            }
-        }
-
         public void Integrate()
         {
             try
@@ -421,113 +224,72 @@ namespace EasyfisIntegration_Quinta
                     logMessages("Reading data...\r\n\n");
 
                     var result = streamReader.ReadToEnd();
+
                     JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
                     Entities.Quinta.RootObject rootObject = (Entities.Quinta.RootObject)javaScriptSerializer.Deserialize(result, typeof(Entities.Quinta.RootObject));
 
-                    List<Entities.Quinta.TRN> newListTRN = new List<Entities.Quinta.TRN>();
-                    foreach (var TRN in rootObject.TRN)
+                    if (rootObject.TRN.Any())
                     {
-                        List<Entities.Quinta.JEN> newListJEN = new List<Entities.Quinta.JEN>();
-                        foreach (var JEN in TRN.JEN)
+                        String previousFID = "";
+
+                        foreach (var data in rootObject.TRN)
                         {
-                            Entities.Quinta.JEN newJEN = new Entities.Quinta.JEN()
+                            Decimal baseAmount = data.BAM;
+                            Decimal discountAmount = data.DSA;
+                            Decimal grossAmount = data.GAM;
+                            Decimal netAmount = data.NAM;
+
+                            Decimal VATAmount = 0;
+                            if (grossAmount != netAmount)
                             {
-                                FTN = JEN.FTN,
-                                SAR = JEN.SAR,
-                                FID = JEN.FID,
-                                SUF = JEN.SUF,
-                                ACI = JEN.ACI,
-                                ACS = JEN.ACS,
-                                SAC = JEN.SAC,
-                                ADC = JEN.ADC,
-                                TDT = JEN.TDT,
-                                GLC = JEN.GLC,
-                                DBT = JEN.DBT,
-                                CRD = JEN.CRD,
-                                BNK = JEN.BNK,
-                                BNM = JEN.BNM,
-                                BOA = JEN.BOA,
-                                CTI = JEN.CTI,
-                                CNO = JEN.CNO,
-                                VNO = JEN.VNO,
-                                VDT = JEN.VDT,
-                                CHQ = JEN.CHQ
+                                VATAmount = grossAmount - netAmount;
+                            }
+
+                            Boolean isSales = false;
+                            if (data.ACS.Equals("CREDIT"))
+                            {
+                                isSales = true;
+                            }
+
+                            Entities.Quinta.TrnSalesInvoice newSalesInvoice = new Entities.Quinta.TrnSalesInvoice()
+                            {
+                                SIDate = data.TDT,
+                                ManualSINumber = data.FID.ToString(),
+                                CustomerCode = data.ACI,
+                                Customer = data.ACC,
+                                Remarks = data.STS + ", " + data.MEM,
+                                ItemCode = data.SAI,
+                                Item = data.SAM,
+                                DiscountAmount = discountAmount,
+                                Amount = grossAmount,
+                                VATAmount = VATAmount,
+                                BankCode = data.BNK.ToString(),
+                                Bank = data.BNM,
+                                IsSales = isSales
                             };
 
-                            newListJEN.Add(newJEN);
+                            Boolean displayMessage = false;
+
+                            if (previousFID.Equals("") || previousFID.Equals(String.Empty))
+                            {
+                                logMessages("Sending Manual SI No. (FID): " + data.FID.ToString() + " \r\n\n");
+                                displayMessage = true;
+                            }
+                            else
+                            {
+                                if (previousFID.Equals(data.FID.ToString()) == false)
+                                {
+                                    logMessages("Sending Manual SI No. (FID): " + data.FID.ToString() + " \r\n\n");
+                                    displayMessage = true;
+                                }
+                            }
+
+                            previousFID = data.FID;
+
+                            String json = new JavaScriptSerializer().Serialize(newSalesInvoice);
+                            SendData(json, displayMessage);
                         }
-
-                        Entities.Quinta.TRN newTRN = new Entities.Quinta.TRN()
-                        {
-                            FTN = TRN.FTN,
-                            PTN = TRN.PTN,
-                            FID = TRN.FID,
-                            STS = TRN.STS,
-                            ADT = TRN.ADT,
-                            DDT = TRN.DDT,
-                            TDT = TRN.TDT,
-                            TCI = TRN.TCI,
-                            TCC = TRN.TCC,
-                            MEM = TRN.MEM,
-                            SAR = TRN.SAR,
-                            SAI = TRN.SAI, // Item Code
-                            SAM = TRN.SAM, // Item Description
-                            ACI = TRN.ACI, // Customer Code
-                            ACC = TRN.ACC, // Customer Name
-                            RNO = TRN.RNO,
-                            ACS = TRN.ACS,
-                            CUR = TRN.CUR,
-                            DSC = TRN.DSC,
-                            DSA = TRN.DSA,
-                            BAM = TRN.BAM,
-                            GAM = TRN.GAM,
-                            NBA = TRN.NBA,
-                            NAM = TRN.NAM,
-                            BNK = TRN.BNK,
-                            BNM = TRN.BNM,
-                            BOA = TRN.BOA,
-                            CTI = TRN.CTI,
-                            CNO = TRN.CNO,
-                            VNO = TRN.VNO,
-                            VDT = TRN.VDT,
-                            CHQ = TRN.CHQ,
-                            RMK = TRN.RMK,
-                            RMO = TRN.RMO,
-                            CNT = TRN.CNT,
-                            WHT = TRN.WHT,
-                            MRK = TRN.MRK,
-                            SRC = TRN.SRC,
-                            JEN = newListJEN
-                        };
-
-                        newListTRN.Add(newTRN);
                     }
-
-                    Entities.Quinta.CON newCON = new Entities.Quinta.CON()
-                    {
-                        DPI = rootObject.CON.DPI,
-                        DCI = rootObject.CON.DCI,
-                    };
-
-                    String defaultTerm = cmb_defaultTerm.Text;
-                    String defaultVatOutput = cmb_defaultVATOuput.Text;
-                    String defaultVatInput = cmb_defaultVATInput.Text;
-                    String defaultWTax = cmb_defaultWTAX.Text;
-                    String defaultDiscount = cmb_defaultDiscount.Text;
-
-                    Entities.Quinta.RootObject rootObjectData = new Entities.Quinta.RootObject()
-                    {
-                        CON = newCON,
-                        TRN = newListTRN,
-                        DefaultTerm = defaultTerm,
-                        DefaultVatOutput = defaultVatOutput,
-                        DefaultVatInput = defaultVatInput,
-                        DefaultWTax = defaultWTax,
-                        DefaultDiscount = defaultDiscount,
-                    };
-
-                    String json = new JavaScriptSerializer().Serialize(rootObjectData);
-                    SendData(json);
                 }
             }
             catch (Exception e)
@@ -537,45 +299,44 @@ namespace EasyfisIntegration_Quinta
             }
         }
 
-        public void SendData(String json)
+        public void SendData(String json, Boolean displayMessage)
         {
             try
             {
-                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(txt_APIURLHostEasyfis.Text + "/api/quinta/integration/salesInvoice/add");
+                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(txt_APIURLHostEasyfis.Text + "/api/quinta/integration/salesInvoice/collection/send");
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
 
                 using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
-                    JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-                    Entities.Quinta.RootObject rootObject = javaScriptSerializer.Deserialize<Entities.Quinta.RootObject>(json);
-
-                    streamWriter.Write(new JavaScriptSerializer().Serialize(rootObject));
+                    Entities.Quinta.TrnSalesInvoice jsonData = new JavaScriptSerializer().Deserialize<Entities.Quinta.TrnSalesInvoice>(json);
+                    streamWriter.Write(new JavaScriptSerializer().Serialize(jsonData));
                 }
 
                 HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 using (StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
-                    var result = streamReader.ReadToEnd();
-                    if (result != null)
+                    if (displayMessage)
                     {
-                        DateTime dateTimeNow = DateTime.Now;
-                        String todayDate = dateTimeNow.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
-
-                        String jsonReturnPath = txt_returnPath.Text;
-                        String fileName = "Return (" + todayDate + ")";
-                        String jsonFileName = jsonReturnPath + "\\" + fileName + ".json";
-
-                        File.WriteAllText(jsonFileName, result);
-
-                        logMessages("Sent Succesful! \r\n\n");
-                        logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n \r\n\n");
+                        String resp = streamReader.ReadToEnd().Replace("\"", "");
+                        if (resp.Equals(""))
+                        {
+                            logMessages("Send Successful! \r\n\n");
+                            logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n \r\n\n");
+                        }
+                        else
+                        {
+                            logMessages("Send Failed! " + resp + "\r\n\n");
+                            logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n \r\n\n");
+                        }
                     }
                 }
             }
-            catch (Exception e)
+            catch (WebException we)
             {
-                logMessages("Sending Error: " + e.Message + "\r\n\n");
+                var resp = new StreamReader(we.Response.GetResponseStream()).ReadToEnd();
+
+                logMessages(resp + "\r\n\n");
                 logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n \r\n\n");
             }
         }
