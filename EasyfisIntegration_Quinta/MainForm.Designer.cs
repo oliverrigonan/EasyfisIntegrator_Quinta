@@ -43,32 +43,32 @@
             this.btn_start = new System.Windows.Forms.Button();
             this.txt_activity = new System.Windows.Forms.TextBox();
             this.tab_settings = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txt_currentToken = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cbx_IsTimeTrigger = new System.Windows.Forms.CheckBox();
             this.txt_APIURLHostEasyfis = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.txt_timeTrigger = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txt_APIURLSource = new System.Windows.Forms.TextBox();
+            this.txt_currentToken = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txt_hotelCode = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.btn_edit = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txt_hotelCode = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txt_APIURLSource = new System.Windows.Forms.TextBox();
             this.pnl_footer = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tmr_timeTrigger = new System.Windows.Forms.Timer(this.components);
             this.fbd_returnDataPath = new System.Windows.Forms.FolderBrowserDialog();
-            this.cbx_IsTimeTrigger = new System.Windows.Forms.CheckBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.pnl_title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tab_container.SuspendLayout();
             this.tab_activity.SuspendLayout();
             this.tab_settings.SuspendLayout();
-            this.pnl_footer.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.pnl_footer.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_title
@@ -227,33 +227,34 @@
             this.tab_settings.Text = "Settings";
             this.tab_settings.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // panel1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 68);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 19);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Current Token:";
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.cbx_IsTimeTrigger);
+            this.panel1.Controls.Add(this.txt_APIURLHostEasyfis);
+            this.panel1.Controls.Add(this.txt_timeTrigger);
+            this.panel1.Controls.Add(this.label13);
+            this.panel1.Controls.Add(this.label14);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.txt_APIURLSource);
+            this.panel1.Controls.Add(this.txt_currentToken);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.txt_hotelCode);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Location = new System.Drawing.Point(7, 6);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(710, 446);
+            this.panel1.TabIndex = 28;
             // 
-            // txt_currentToken
+            // cbx_IsTimeTrigger
             // 
-            this.txt_currentToken.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_currentToken.Location = new System.Drawing.Point(13, 88);
-            this.txt_currentToken.Name = "txt_currentToken";
-            this.txt_currentToken.Size = new System.Drawing.Size(474, 28);
-            this.txt_currentToken.TabIndex = 7;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(9, 217);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(90, 19);
-            this.label14.TabIndex = 19;
-            this.label14.Text = "Time Trigger:";
+            this.cbx_IsTimeTrigger.AutoSize = true;
+            this.cbx_IsTimeTrigger.Location = new System.Drawing.Point(262, 243);
+            this.cbx_IsTimeTrigger.Name = "cbx_IsTimeTrigger";
+            this.cbx_IsTimeTrigger.Size = new System.Drawing.Size(133, 21);
+            this.cbx_IsTimeTrigger.TabIndex = 27;
+            this.cbx_IsTimeTrigger.Text = "Is Time Trigger?";
+            this.cbx_IsTimeTrigger.UseVisualStyleBackColor = true;
             // 
             // txt_APIURLHostEasyfis
             // 
@@ -263,6 +264,14 @@
             this.txt_APIURLHostEasyfis.Name = "txt_APIURLHostEasyfis";
             this.txt_APIURLHostEasyfis.Size = new System.Drawing.Size(682, 28);
             this.txt_APIURLHostEasyfis.TabIndex = 18;
+            // 
+            // txt_timeTrigger
+            // 
+            this.txt_timeTrigger.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_timeTrigger.Location = new System.Drawing.Point(13, 237);
+            this.txt_timeTrigger.Name = "txt_timeTrigger";
+            this.txt_timeTrigger.Size = new System.Drawing.Size(229, 28);
+            this.txt_timeTrigger.TabIndex = 18;
             // 
             // label13
             // 
@@ -275,13 +284,69 @@
             this.label13.TabIndex = 26;
             this.label13.Text = "API URL Host";
             // 
-            // txt_timeTrigger
+            // label14
             // 
-            this.txt_timeTrigger.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_timeTrigger.Location = new System.Drawing.Point(13, 237);
-            this.txt_timeTrigger.Name = "txt_timeTrigger";
-            this.txt_timeTrigger.Size = new System.Drawing.Size(229, 28);
-            this.txt_timeTrigger.TabIndex = 18;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(9, 217);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(90, 19);
+            this.label14.TabIndex = 19;
+            this.label14.Text = "Time Trigger:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(9, 68);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(107, 19);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Current Token:";
+            // 
+            // txt_APIURLSource
+            // 
+            this.txt_APIURLSource.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_APIURLSource.Location = new System.Drawing.Point(13, 27);
+            this.txt_APIURLSource.Name = "txt_APIURLSource";
+            this.txt_APIURLSource.Size = new System.Drawing.Size(682, 28);
+            this.txt_APIURLSource.TabIndex = 9;
+            // 
+            // txt_currentToken
+            // 
+            this.txt_currentToken.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_currentToken.Location = new System.Drawing.Point(13, 88);
+            this.txt_currentToken.Name = "txt_currentToken";
+            this.txt_currentToken.Size = new System.Drawing.Size(474, 28);
+            this.txt_currentToken.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(9, 7);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(112, 19);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "API URL Source:";
+            // 
+            // txt_hotelCode
+            // 
+            this.txt_hotelCode.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_hotelCode.Location = new System.Drawing.Point(497, 88);
+            this.txt_hotelCode.Name = "txt_hotelCode";
+            this.txt_hotelCode.Size = new System.Drawing.Size(198, 28);
+            this.txt_hotelCode.TabIndex = 11;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(493, 68);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(92, 19);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Hotel Code:";
             // 
             // btn_edit
             // 
@@ -310,42 +375,6 @@
             this.btn_save.Text = "Save";
             this.btn_save.UseVisualStyleBackColor = false;
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(493, 68);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(92, 19);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Hotel Code:";
-            // 
-            // txt_hotelCode
-            // 
-            this.txt_hotelCode.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_hotelCode.Location = new System.Drawing.Point(497, 88);
-            this.txt_hotelCode.Name = "txt_hotelCode";
-            this.txt_hotelCode.Size = new System.Drawing.Size(198, 28);
-            this.txt_hotelCode.TabIndex = 11;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(9, 7);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(112, 19);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "API URL Source:";
-            // 
-            // txt_APIURLSource
-            // 
-            this.txt_APIURLSource.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_APIURLSource.Location = new System.Drawing.Point(13, 27);
-            this.txt_APIURLSource.Name = "txt_APIURLSource";
-            this.txt_APIURLSource.Size = new System.Drawing.Size(682, 28);
-            this.txt_APIURLSource.TabIndex = 9;
             // 
             // pnl_footer
             // 
@@ -376,44 +405,15 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(10, 10);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(298, 18);
+            this.label4.Size = new System.Drawing.Size(294, 18);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Easyfis Integrator V.1.20190425.2112.NOR";
+            this.label4.Text = "Easyfis Integrator V.1.201909201642.NOR";
             // 
             // tmr_timeTrigger
             // 
             this.tmr_timeTrigger.Enabled = true;
             this.tmr_timeTrigger.Interval = 1000;
             this.tmr_timeTrigger.Tick += new System.EventHandler(this.tmr_timeTriggerTick);
-            // 
-            // cbx_IsTimeTrigger
-            // 
-            this.cbx_IsTimeTrigger.AutoSize = true;
-            this.cbx_IsTimeTrigger.Location = new System.Drawing.Point(262, 243);
-            this.cbx_IsTimeTrigger.Name = "cbx_IsTimeTrigger";
-            this.cbx_IsTimeTrigger.Size = new System.Drawing.Size(133, 21);
-            this.cbx_IsTimeTrigger.TabIndex = 27;
-            this.cbx_IsTimeTrigger.Text = "Is Time Trigger?";
-            this.cbx_IsTimeTrigger.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.cbx_IsTimeTrigger);
-            this.panel1.Controls.Add(this.txt_APIURLHostEasyfis);
-            this.panel1.Controls.Add(this.txt_timeTrigger);
-            this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.txt_APIURLSource);
-            this.panel1.Controls.Add(this.txt_currentToken);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.txt_hotelCode);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Location = new System.Drawing.Point(7, 6);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(710, 446);
-            this.panel1.TabIndex = 28;
             // 
             // MainForm
             // 
@@ -438,10 +438,10 @@
             this.tab_activity.ResumeLayout(false);
             this.tab_activity.PerformLayout();
             this.tab_settings.ResumeLayout(false);
-            this.pnl_footer.ResumeLayout(false);
-            this.pnl_footer.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.pnl_footer.ResumeLayout(false);
+            this.pnl_footer.PerformLayout();
             this.ResumeLayout(false);
 
         }
