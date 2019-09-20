@@ -221,8 +221,6 @@ namespace EasyfisIntegration_Quinta
                 HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 using (StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
-                    logMessages("Reading data...\r\n\n");
-
                     var result = streamReader.ReadToEnd();
 
                     JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
@@ -232,69 +230,160 @@ namespace EasyfisIntegration_Quinta
                     {
                         String previousFID = "";
 
-                        foreach (var data in rootObject.TRN)
+                        var creditSales = from d in rootObject.TRN
+                                          where d.ACS.Equals("CREDIT")
+                                          select d;
+
+                        if (creditSales.Any())
                         {
-                            Decimal baseAmount = data.BAM;
-                            Decimal discountAmount = data.DSA;
-                            Decimal grossAmount = data.GAM;
-                            Decimal netAmount = data.NAM;
+                            logMessages("Sending sales...\r\n\n");
 
-                            Decimal VATAmount = 0;
-                            if (grossAmount != netAmount)
+                            foreach (var data in creditSales)
                             {
-                                VATAmount = grossAmount - netAmount;
-                            }
+                                var datas = data;
 
-                            Boolean isSales = false;
-                            if (data.ACS.Equals("CREDIT"))
-                            {
-                                isSales = true;
-                            }
+                                Decimal baseAmount = data.BAM;
+                                Decimal discountPercentage = data.DSC;
+                                Decimal discountAmount = data.DSA;
+                                Decimal grossAmount = data.GAM;
+                                Decimal netAmount = data.NAM;
 
-                            Entities.Quinta.TrnSalesInvoice newSalesInvoice = new Entities.Quinta.TrnSalesInvoice()
-                            {
-                                SIDate = data.TDT,
-                                ManualSINumber = data.FID.ToString(),
-                                CustomerCode = data.ACI,
-                                Customer = data.ACC,
-                                Remarks = data.STS + ", " + data.MEM,
-                                ItemCode = data.SAI,
-                                Item = data.SAM,
-                                DiscountAmount = discountAmount,
-                                Amount = grossAmount,
-                                VATAmount = VATAmount,
-                                BankCode = data.BNK.ToString(),
-                                Bank = data.BNM,
-                                IsSales = isSales
-                            };
-
-                            Boolean displayMessage = false;
-
-                            if (previousFID.Equals("") || previousFID.Equals(String.Empty))
-                            {
-                                logMessages("Sending Manual SI No. (FID): " + data.FID.ToString() + " \r\n\n");
-                                displayMessage = true;
-                            }
-                            else
-                            {
-                                if (previousFID.Equals(data.FID.ToString()) == false)
+                                Decimal VATAmount = 0;
+                                if (grossAmount != netAmount)
                                 {
-                                    logMessages("Sending Manual SI No. (FID): " + data.FID.ToString() + " \r\n\n");
+                                    VATAmount = grossAmount - netAmount;
+                                }
+
+                                Boolean isSales = false;
+                                if (data.ACS.Equals("CREDIT"))
+                                {
+                                    isSales = true;
+                                }
+
+                                Entities.Quinta.TrnSalesInvoice newSalesInvoice = new Entities.Quinta.TrnSalesInvoice()
+                                {
+                                    SIDate = data.ADT,
+                                    DocumentReference = data.FID.ToString(),
+                                    ManualSINumber = data.FID.ToString(),
+                                    CustomerCode = data.ACI,
+                                    Customer = data.ACC,
+                                    Remarks = data.STS,
+                                    ItemCode = data.SAI,
+                                    Item = data.SAM,
+                                    DiscountPercentage = discountPercentage,
+                                    DiscountAmount = discountAmount,
+                                    Amount = grossAmount,
+                                    ORDate = data.TDT,
+                                    VATAmount = VATAmount,
+                                    CheckNumber = data.CHQ,
+                                    BankCode = data.BNK.ToString(),
+                                    Bank = data.BNM,
+                                    Particulars = "FTN: " + data.FTN.ToString() + ", TDT: " + data.TDT + ", MEM: " + data.MEM,
+                                    IsSales = isSales
+                                };
+
+                                Boolean displayMessage = false;
+
+                                if (previousFID.Equals("") || previousFID.Equals(String.Empty))
+                                {
+                                    logMessages("Sending FID: " + data.FID.ToString() + " \r\n\n");
                                     displayMessage = true;
                                 }
+                                else
+                                {
+                                    if (previousFID.Equals(data.FID.ToString()) == false)
+                                    {
+                                        logMessages("Sending FID: " + data.FID.ToString() + " \r\n\n");
+                                        displayMessage = true;
+                                    }
+                                }
+
+                                previousFID = data.FID;
+
+                                String json = new JavaScriptSerializer().Serialize(newSalesInvoice);
+                                SendData(json, displayMessage);
                             }
+                        }
 
-                            previousFID = data.FID;
+                        var debitCollections = from d in rootObject.TRN
+                                               where d.ACS.Equals("DEBIT")
+                                               select d;
 
-                            String json = new JavaScriptSerializer().Serialize(newSalesInvoice);
-                            SendData(json, displayMessage);
+                        if (debitCollections.Any())
+                        {
+                            logMessages("Sending collections...\r\n\n");
+
+                            foreach (var data in debitCollections)
+                            {
+                                var datas = data;
+
+                                Decimal baseAmount = data.BAM;
+                                Decimal discountPercentage = data.DSC;
+                                Decimal discountAmount = data.DSA;
+                                Decimal grossAmount = data.GAM;
+                                Decimal netAmount = data.NAM;
+
+                                Decimal VATAmount = 0;
+                                if (grossAmount != netAmount)
+                                {
+                                    VATAmount = grossAmount - netAmount;
+                                }
+
+                                Boolean isSales = false;
+                                if (data.ACS.Equals("CREDIT"))
+                                {
+                                    isSales = true;
+                                }
+
+                                Entities.Quinta.TrnSalesInvoice newSalesInvoice = new Entities.Quinta.TrnSalesInvoice()
+                                {
+                                    SIDate = data.TDT,
+                                    DocumentReference = data.FID.ToString(),
+                                    ManualSINumber = data.FID.ToString(),
+                                    CustomerCode = data.ACI,
+                                    Customer = data.ACC,
+                                    Remarks = data.STS,
+                                    ItemCode = data.SAI,
+                                    Item = data.SAM,
+                                    DiscountPercentage = discountPercentage,
+                                    DiscountAmount = discountAmount,
+                                    Amount = grossAmount,
+                                    VATAmount = VATAmount,
+                                    CheckNumber = data.CHQ,
+                                    BankCode = data.BNK.ToString(),
+                                    Bank = data.BNM,
+                                    Particulars = "FTN: " + data.FTN.ToString() + ", TDT: " + data.TDT + ", MEM: " + data.MEM,
+                                    IsSales = isSales
+                                };
+
+                                Boolean displayMessage = false;
+
+                                if (previousFID.Equals("") || previousFID.Equals(String.Empty))
+                                {
+                                    logMessages("Sending FID: " + data.FID.ToString() + " \r\n\n");
+                                    displayMessage = true;
+                                }
+                                else
+                                {
+                                    if (previousFID.Equals(data.FID.ToString()) == false)
+                                    {
+                                        logMessages("Sending FID: " + data.FID.ToString() + " \r\n\n");
+                                        displayMessage = true;
+                                    }
+                                }
+
+                                previousFID = data.FID;
+
+                                String json = new JavaScriptSerializer().Serialize(newSalesInvoice);
+                                SendData(json, displayMessage);
+                            }
                         }
                     }
                 }
             }
             catch (Exception e)
             {
-                logMessages("Reading Error: " + e.Message + "\r\n\n");
+                logMessages("Reading Error: " + e + "\r\n\n");
                 logMessages("Date/Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "\r\n\n \r\n\n");
             }
         }

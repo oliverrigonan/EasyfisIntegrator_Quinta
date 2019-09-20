@@ -88,17 +88,22 @@ namespace EasyfisIntegration_Quinta.Entities.Quinta
     public class TrnSalesInvoice
     {
         public String SIDate { get; set; }
+        public String DocumentReference { get; set; }
         public String ManualSINumber { get; set; }
         public String CustomerCode { get; set; }
         public String Customer { get; set; }
         public String Remarks { get; set; }
         public String ItemCode { get; set; }
         public String Item { get; set; }
+        public Decimal DiscountPercentage { get; set; }
         public Decimal DiscountAmount { get; set; }
-        public Decimal Amount { get; set; }
         public Decimal VATAmount { get; set; }
+        public Decimal Amount { get; set; }
+        public String ORDate { get; set; }
+        public String CheckNumber { get; set; }
         public String BankCode { get; set; }
         public String Bank { get; set; }
+        public String Particulars { get; set; }
         public Boolean IsSales { get; set; }
     }
 }
