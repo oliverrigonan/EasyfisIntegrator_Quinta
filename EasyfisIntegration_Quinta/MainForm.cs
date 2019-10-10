@@ -348,6 +348,7 @@ namespace EasyfisIntegration_Quinta
                                     DiscountPercentage = discountPercentage,
                                     DiscountAmount = discountAmount,
                                     Amount = grossAmount,
+                                    ORDate = data.TDT,
                                     VATAmount = VATAmount,
                                     CheckNumber = data.CHQ,
                                     BankCode = data.BNK.ToString(),
