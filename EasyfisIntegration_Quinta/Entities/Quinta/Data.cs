@@ -38,6 +38,7 @@ namespace EasyfisIntegration_Quinta.Entities.Quinta
         public String RNO { get; set; }
         public String ACS { get; set; }
         public Boolean ADJ { get; set; }
+        public Boolean REV { get; set; }
         public String CUR { get; set; }
         public Decimal DSC { get; set; }
         public Decimal DSA { get; set; }

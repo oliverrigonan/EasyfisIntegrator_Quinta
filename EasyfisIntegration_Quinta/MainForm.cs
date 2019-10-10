@@ -308,6 +308,7 @@ namespace EasyfisIntegration_Quinta
 
                         var debitCollections = from d in rootObject.TRN
                                                where d.ACS.Equals("DEBIT")
+                                               && d.REV == false
                                                select d;
 
                         if (debitCollections.Any())
