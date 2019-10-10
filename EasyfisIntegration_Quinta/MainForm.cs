@@ -232,7 +232,7 @@ namespace EasyfisIntegration_Quinta
 
                         var creditSales = from d in rootObject.TRN
                                           where d.ACS.Equals("CREDIT")
-                                          && d.ADJ.Equals("FALSE")
+                                          && d.ADJ == false
                                           select d;
 
                         if (creditSales.Any())
