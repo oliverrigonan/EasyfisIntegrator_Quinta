@@ -233,6 +233,7 @@ namespace EasyfisIntegration_Quinta
                         var creditSales = from d in rootObject.TRN
                                           where d.ACS.Equals("CREDIT")
                                           && d.ADJ == false
+                                          && d.REV == false
                                           select d;
 
                         if (creditSales.Any())
@@ -308,6 +309,7 @@ namespace EasyfisIntegration_Quinta
 
                         var debitCollections = from d in rootObject.TRN
                                                where d.ACS.Equals("DEBIT")
+                                               && d.ADJ == false
                                                && d.REV == false
                                                select d;
 

@@ -407,7 +407,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(294, 18);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Easyfis Integrator V.1.201909201642.NOR";
+            this.label4.Text = "Easyfis Integrator V.1.201910101906.NOR";
             // 
             // tmr_timeTrigger
             // 
